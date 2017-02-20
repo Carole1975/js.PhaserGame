@@ -15,7 +15,7 @@ function create() {
     background = game.add.sprite(0, 0, "background");
     player = game.add.sprite(70, 370, "dude");
     player.anchor.setTo(0.5);
-    // poour enlever moon walk, comment what's down below //
+    // pour enlever moon walk, comment what's down below //
     player.scale.setTo(-1, 1)
 
     Onekey.michael.onDown.add(playFx, this);
