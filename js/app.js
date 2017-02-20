@@ -5,19 +5,22 @@ var cursors, player, background, facing = 'left', music;
 function preload() {
     game.load.image("background", "assets/cuisine.png");
     game.load.spritesheet("woman", "assets/walkingwomangg_720.png", 100, 135);
-    game.load.spritesheet("dude", "assets/mansmall_720.png", 100, 200);
+    game.load.spritesheet("dude", "assets/mansmall_720.png", 92, 175);
 }
 var player;
-var png;
+var pnj;
+var score = 0;
+var scoreText;
 function create() {
     //music = game.add.audio('micka');
     //music.play();
     background = game.add.sprite(0, 0, "background");
-    player = game.add.sprite(70, 370, "woman");
-    png = game.add.sprite(70, 400, "dude");
+    player = game.add.sprite(70, 200, "woman");
+    pnj = game.add.sprite(70, 200, "dude");
     //player.anchor.setTo(0.5);
     // pour enlever moon walk, comment what's down below //
-    //player.scale.setTo(-1, 1)
+    player.scale.setTo(2, 2);
+    pnj.scale.setTo(1.5, 1.5);
 
     //Onekey.michael.onDown.add(playFx, this);
 
@@ -26,9 +29,10 @@ function create() {
     player.animations.add('right', [0, 1, 2, 3, 4, 5], 20, true, true);
 
     game.physics.arcade.enable(player)
-    player.body.bounce.y = 0.2;
-    player.body.gravity.y = 300;
+    
     player.body.collideWorldBounds = true;
+
+    scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
 
     keys = game.input.keyboard.createCursorKeys();
 
@@ -57,6 +61,15 @@ function update() {
 
         player.frame = 5;
     }
+}
+
+function score (player, star) {
+
+    star.kill();
+
+    score += 10;
+    scoreText.text = 'Score: ' + score;
+
 }
 
 
