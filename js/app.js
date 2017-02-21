@@ -5,10 +5,13 @@ var cursors, player, background, facing = 'left', music;
 function preload() {
     game.load.image("background", "assets/cuisine.png");
     game.load.spritesheet("woman", "assets/walkingwomangg_720.png", 100, 135);
-    game.load.spritesheet("dude", "assets/mansmall_720.png", 92, 175);
+    game.load.image('pepper', '../assets/pepper.png');
+
+    //game.load.spritesheet("dude", "assets/mansmall_720.png", 92, 175);
 }
 var player;
 var pnj;
+var peppers;
 var score = 0;
 var scoreText;
 function create() {
@@ -16,11 +19,13 @@ function create() {
     //music.play();
     background = game.add.sprite(0, 0, "background");
     player = game.add.sprite(70, 200, "woman");
-    pnj = game.add.sprite(70, 200, "dude");
+    peppers= game.add.sprite(250, 200, "pepper");
+    //pnj = game.add.sprite(70, 200, "dude");
     //player.anchor.setTo(0.5);
     // pour enlever moon walk, comment what's down below //
     player.scale.setTo(2, 2);
-    pnj.scale.setTo(1.5, 1.5);
+    peppers.scale.set(0.2, 0.2);
+    //pnj.scale.setTo(1.5, 1.5);
 
     //Onekey.michael.onDown.add(playFx, this);
 
@@ -28,7 +33,10 @@ function create() {
     player.animations.add('turn', [6], 24, true, true);
     player.animations.add('right', [0, 1, 2, 3, 4, 5], 20, true, true);
 
-    game.physics.arcade.enable(player)
+
+    game.physics.arcade.enable(player);
+
+    peppers.enableBody = true;
     
     player.body.collideWorldBounds = true;
 
@@ -38,6 +46,8 @@ function create() {
 
 }
 function update() {
+
+    game.physics.arcade.overlap(player, peppers, collectPeppers, score, null, this);
 
     player.body.velocity.x = 0;
     player.body.gravity.y = 0;
@@ -63,11 +73,11 @@ function update() {
     }
 }
 
-function score (player, star) {
+function collectPeppers (player, peppers) {
 
-    star.kill();
+    peppers.kill();
 
-    score += 10;
+    score += 50;
     scoreText.text = 'Score: ' + score;
 
 }
