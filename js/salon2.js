@@ -65,7 +65,7 @@ create: function(){
 	gisant.kill();
 
 
-	console.log("ça marche");
+	console.log("Ã§a marche");
 	this.game.physics.arcade.enable(mrTrump);
 	this.game.physics.startSystem(Phaser.Physics.ARCADE);
 	mrTrump.body.collideWorldBounds = true;
