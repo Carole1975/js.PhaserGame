@@ -1,14 +1,14 @@
 var BasicGame = {
 };
 
-BasicGame.cuisineF = function (game) {
+BasicGame.CuisineF = function (game) {
 
 };
 
 // var game = new Phaser.Game(800, 500, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 var cursors, player, background, facing = 'left', music;
 
-BasicGame.cuisineF.prototype = {
+BasicGame.CuisineF.prototype = {
 
 
 
@@ -128,34 +128,41 @@ BasicGame.cuisineF.prototype = {
         player.frame = 19;
     }
 
-    function collectPeppers (player, peppers) {
 
-        peppers.kill();
 
-        score += 50;
-        scoreText.text = 'Score: ' + score;
+    game.state.start('rue');
 
-    }
-    function table(player,zone1){
-      repas.revive();
-      aTable.revive();
-      casserole.kill();
+},
 
-      score+=50;
-      scoreText.text="score :" +score;
+collectPeppers : function(player, peppers) {
 
-  }
-  function lancer() {
+    peppers.kill();
 
-      couteau.body.gravity.x=-300;
+    score += 50;
+    scoreText.text = 'Score: ' + score;
+
+},
+table : function(player,zone1){
+  repas.revive();
+  aTable.revive();
+  casserole.kill();
+
+  score+=50;
+  scoreText.text="score :" +score;
+
+},
+
+lancer : function() {
+
+  couteau.body.gravity.x=-300;
     // score+=50;
     // scoreText.text="score :" +score;
     tele.kill();
     
 
-}
+},
 
-function vaisselle(player,robinet){
+vaisselle : function(player,robinet){
     textVais=game.add.sprite(400,200, "textVais");
     tele=game.add.sprite(20, 350, "tele");
     couteau.revive(); 
@@ -168,12 +175,6 @@ function vaisselle(player,robinet){
     // scoreText.text="score :" +score;
 
 }
-
-game.state.start('rue');
-
-}
-
-
 
 }
 
